@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Product Catalog with Nested Table</title>
+    <style type="text/css">
+        table.main-table { width: 80%; margin: 20px auto; border: 2px solid #000080; background-color: #f0f8ff; border-collapse: collapse; }
+        th { background-color: #000080; color: white; padding: 10px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #ccc; vertical-align: top; }
+        img { max-width: 150px; border: 1px solid #999; }
+        
+        /* Nested table styles */
+        table.nested-table { width: 100%; border: 1px solid #666; background-color: #fff; margin-top: 10px; }
+        table.nested-table td { border: 1px solid #eee; padding: 5px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Featured Products (Nested Table Demo)</h1>
+    
+    <table class="main-table" border="1">
+        <tr>
+            <th>Item Image</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><img src="images/product1.png" alt="Product 1" /></td>
+            <td>
+                <h3>Vintage Camera</h3>
+                <p>A classic 35mm film camera from the 1970s.</p>
+                
+                <!-- Nested Table -->
+                <table class="nested-table">
+                    <tr>
+                        <td><strong>Condition:</strong></td>
+                        <td>Used - Good</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warranty:</strong></td>
+                        <td>30 Days</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="images/product2.png" alt="Product 2" /></td>
+            <td>
+                <h3>Leather Satchel</h3>
+                <p>Handcrafted leather bag with multiple compartments.</p>
+                <p><strong>Price:</strong> $85.00</p>
+            </td>
+        </tr>
+    </table>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+

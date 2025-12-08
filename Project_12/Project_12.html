@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site Structure and Administration</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; margin: 40px; line-height: 1.6; }
+        h1 { font-family: Arial, sans-serif; }
+        .tree { background-color: #f9f9f9; border: 1px solid #ddd; padding: 20px; border-radius: 5px; display: inline-block; min-width: 300px; }
+        ul { list-style-type: none; padding-left: 20px; }
+        li::before { content: "📁 "; }
+        li.file::before { content: "📄 "; }
+        .explanation { font-family: Arial, sans-serif; margin-top: 30px; max-width: 800px; }
+    </style>
+</head>
+<body>
+    <h1>Site Structure and Administration</h1>
+    
+    <div class="tree">
+        <strong>/ (Root Directory)</strong>
+        <ul>
+            <li>Project_1/
+                <ul>
+                    <li class="file">Project_1.html</li>
+                    <li class="file">Report_Project_1.md</li>
+                </ul>
+            </li>
+            <li>Project_2/
+                <ul>
+                    <li class="file">Default.html</li>
+                    <li class="file">Project_2.html</li>
+                </ul>
+            </li>
+            <li>... (Projects 3-11) ...</li>
+            <li>Project_12/
+                <ul>
+                    <li class="file">Project_12.html</li>
+                </ul>
+            </li>
+            <li>images/
+                <ul>
+                    <li class="file">logo.png</li>
+                    <li class="file">background.jpg</li>
+                </ul>
+            </li>
+            <li>css/
+                <ul>
+                    <li class="file">styles.css</li>
+                </ul>
+            </li>
+            <li>js/
+                <ul>
+                    <li class="file">main.js</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="explanation">
+        <h2>Why File Organization Matters</h2>
+        <p>
+            Organizing a web project into a logical folder structure is essential for long-term maintenance and collaboration. 
+            As a site grows from a few pages to hundreds, keeping all files in a single folder becomes unmanageable.
+        </p>
+        <p>
+            <strong>Key Benefits:</strong>
+        </p>
+        <ul>
+            <li style="list-style-type: disc;"><strong>Maintainability:</strong> It is easier to find specific files when they are categorized (e.g., all images in an `images` folder).</li>
+            <li style="list-style-type: disc;"><strong>Linking:</strong> Consistent structure makes writing relative paths predictable.</li>
+            <li style="list-style-type: disc;"><strong>Scalability:</strong> New sections can be added as new folders without cluttering the root directory.</li>
+            <li style="list-style-type: disc;"><strong>Collaboration:</strong> Other developers can immediately understand the project layout if it follows standard conventions.</li>
+        </ul>
+    </div>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+

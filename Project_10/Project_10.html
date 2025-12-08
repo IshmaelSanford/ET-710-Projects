@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Operators & iOS Calculator</title>
+    <link rel="icon" href="calculator.svg" type="image/svg+xml">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; max-width: 800px; }
+        h1, h2 { color: #333; }
+        
+        /* Styles for Part 1 */
+        .result-box { background-color: #f4f4f4; padding: 15px; border-radius: 5px; border: 1px solid #ddd; margin-bottom: 15px; }
+        .operator-name { font-weight: bold; color: #0056b3; }
+        .calculation { font-family: monospace; font-size: 1.2em; color: #333; }
+
+        /* --- iOS Calculator Styles --- */
+        .calculator-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .ios-calculator {
+            background-color: black;
+            border-radius: 40px;
+            padding: 20px;
+            width: 320px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .calculator-history {
+            width: 100%;
+            height: 30px;
+            border: none;
+            background-color: black;
+            color: #888;
+            font-size: 1.5rem;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+            font-weight: 300;
+            overflow: hidden;
+        }
+
+        .calculator-screen {
+            width: 100%;
+            height: 80px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 4rem; /* Large text */
+            text-align: right;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            box-sizing: border-box;
+            font-weight: 300;
+            margin-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .calc-btn {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            transition: filter 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+        }
+
+        .calc-btn:active {
+            filter: brightness(130%);
+        }
+
+        /* Button Colors */
+        .btn-grey {
+            background-color: #a5a5a5;
+            color: black;
+        }
+
+        .btn-dark-grey {
+            background-color: #333333;
+            color: white;
+        }
+
+        .btn-orange {
+            background-color: #ff9f0a;
+            color: white;
+            font-size: 2rem; /* Slightly larger for symbols */
+            padding-bottom: 5px; /* Visual adjustment */
+        }
+
+        /* Zero button spans two columns */
+        .btn-zero {
+            grid-column: span 2;
+            width: 100%;
+            border-radius: 35px;
+            justify-content: flex-start;
+            padding-left: 28px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 10: JavaScript Operators</h1>
+
+    <!-- Part 1: Static Demonstration (Original Requirement) -->
+    <section>
+        <h2>Part 1: Static Variables Demo</h2>
+        <p>We have declared two variables: <strong>A = 8</strong> and <strong>B = 2</strong>.</p>
+        <div id="results"></div>
+    </section>
+
+    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ccc;">
+
+    <!-- Part 2: iOS Style Calculator -->
+    <section>
+        <h2>Part 2: Interactive Calculator</h2>
+        <p>A fully functional calculator styled like the iOS app.</p>
+        
+        <div class="calculator-wrapper">
+            <div class="ios-calculator">
+                <!-- History Screen -->
+                <div class="calculator-history" id="history"></div>
+                <!-- Display Screen -->
+                <div class="calculator-screen" id="display">0</div>
+                
+                <!-- Keypad -->
+                <div class="calculator-keys">
+                    <!-- Row 1 -->
+                    <button type="button" class="calc-btn btn-grey" onclick="handleFunction('AC')">AC</button>
+                    <button type="button" class="calc-btn btn-grey" onclick="handleFunction('+/-')">+/-</button>
+                    <button type="button" class="calc-btn btn-grey" onclick="handleFunction('%')">%</button>
+                    <button type="button" class="calc-btn btn-orange" onclick="handleOperator('/')">&divide;</button>
+
+                    <!-- Row 2 -->
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(7)">7</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(8)">8</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(9)">9</button>
+                    <button type="button" class="calc-btn btn-orange" onclick="handleOperator('*')">&times;</button>
+
+                    <!-- Row 3 -->
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(4)">4</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(5)">5</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(6)">6</button>
+                    <button type="button" class="calc-btn btn-orange" onclick="handleOperator('-')">&minus;</button>
+
+                    <!-- Row 4 -->
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(1)">1</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(2)">2</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDigit(3)">3</button>
+                    <button type="button" class="calc-btn btn-orange" onclick="handleOperator('+')">+</button>
+
+                    <!-- Row 5 -->
+                    <button type="button" class="calc-btn btn-dark-grey btn-zero" onclick="inputDigit(0)">0</button>
+                    <button type="button" class="calc-btn btn-dark-grey" onclick="inputDecimal('.')">.</button>
+                    <button type="button" class="calc-btn btn-orange" onclick="handleOperator('=')">=</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* --- Part 1 Script (Original) --- */
+        let A = 8;
+        let B = 2;
+        let sum = A + B;
+        let difference = A - B;
+        let product = A * B;
+        let quotient = A / B;
+        let modulus = A % B;
+
+        let outputHtml = "";
+        outputHtml += '<div class="result-box"><span class="operator-name">Addition (+):</span> A + B = ' + sum + '</div>';
+        outputHtml += '<div class="result-box"><span class="operator-name">Subtraction (-):</span> A - B = ' + difference + '</div>';
+        outputHtml += '<div class="result-box"><span class="operator-name">Multiplication (*):</span> A * B = ' + product + '</div>';
+        outputHtml += '<div class="result-box"><span class="operator-name">Division (/):</span> A / B = ' + quotient + '</div>';
+        outputHtml += '<div class="result-box"><span class="operator-name">Modulus (%):</span> A % B = ' + modulus + '</div>';
+        document.getElementById('results').innerHTML = outputHtml;
+
+
+        /* --- Part 2: iOS Calculator Logic --- */
+        
+        // Calculator State
+        const calculator = {
+            displayValue: '0',
+            historyValue: '',
+            isResult: false,
+        };
+
+        function updateDisplay() {
+            const display = document.getElementById('display');
+            const history = document.getElementById('history');
+            
+            display.innerText = calculator.displayValue;
+            history.innerText = calculator.historyValue;
+        }
+
+        function inputDigit(digit) {
+            if (calculator.displayValue === '0' || calculator.isResult) {
+                calculator.displayValue = String(digit);
+                calculator.isResult = false;
+            } else {
+                calculator.displayValue += digit;
+            }
+            updateDisplay();
+        }
+
+        function inputDecimal(dot) {
+            if (calculator.isResult) {
+                calculator.displayValue = "0" + dot;
+                calculator.isResult = false;
+            } else {
+                calculator.displayValue += dot;
+            }
+            updateDisplay();
+        }
+
+        function handleOperator(nextOperator) {
+            const operators = ['+', '-', '*', '/'];
+
+            if (nextOperator === '=') {
+                try {
+                    // Save current expression to history before calculating
+                    calculator.historyValue = calculator.displayValue;
+                    
+                    // Evaluate the expression
+                    const result = new Function('return ' + calculator.displayValue)();
+                    
+                    // Easter Egg: Check for specific numbers
+                    if (result === 420 || result === 69 || result === 67) {
+                        calculator.displayValue = "nice";
+                    } else if (result === 21) {
+                        calculator.historyValue = "9+10";
+                        calculator.displayValue = String(result);
+                    }
+                    // Format result for scientific notation if needed
+                    else if (Math.abs(result) > 999999999 || (Math.abs(result) < 0.000001 && result !== 0)) {
+                        calculator.displayValue = result.toExponential(6);
+                    } else {
+                        // Limit decimal places to avoid overflow
+                        calculator.displayValue = String(Math.round(result * 100000000) / 100000000);
+                    }
+                    
+                    calculator.isResult = true;
+                } catch (error) {
+                    calculator.displayValue = 'Error';
+                    calculator.isResult = true;
+                }
+            } else {
+                if (calculator.isResult) {
+                    calculator.isResult = false;
+                    // If starting new operation after result, clear history
+                    calculator.historyValue = ''; 
+                }
+                
+                // Check if the last character is an operator
+                const lastChar = calculator.displayValue.slice(-1);
+                if (operators.includes(lastChar)) {
+                    // Replace the last operator with the new one
+                    calculator.displayValue = calculator.displayValue.slice(0, -1) + nextOperator;
+                } else {
+                    // Append operator without spaces
+                    calculator.displayValue += nextOperator;
+                }
+            }
+            updateDisplay();
+        }
+
+        function handleFunction(type) {
+            if (type === 'AC') {
+                calculator.displayValue = '0';
+                calculator.historyValue = '';
+                calculator.isResult = false;
+            } else if (type === '+/-') {
+                if (calculator.isResult) {
+                    calculator.displayValue = String(parseFloat(calculator.displayValue) * -1);
+                }
+            } else if (type === '%') {
+                calculator.displayValue += ' / 100';
+            }
+            updateDisplay();
+        }
+    </script>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+

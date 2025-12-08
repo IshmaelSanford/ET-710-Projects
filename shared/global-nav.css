@@ -1,0 +1,91 @@
+.global-nav-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.global-nav-tab {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border-radius: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* iOS ease */
+    overflow: hidden;
+    width: 48px; /* Collapsed width */
+    height: 48px; /* Collapsed height */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Grain overlay */
+.global-nav-tab::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+    border-radius: 24px;
+}
+
+.global-nav-tab:hover {
+    width: auto; /* Allow expansion */
+    min-width: 240px;
+    background: rgba(255, 255, 255, 0.85);
+    padding-right: 16px;
+}
+
+.nav-icon {
+    min-width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease 0.1s;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.global-nav-tab:hover .nav-links {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #007AFF; /* iOS Blue */
+}
+
+.nav-separator {
+    width: 1px;
+    height: 16px;
+    background: rgba(0,0,0,0.1);
+}

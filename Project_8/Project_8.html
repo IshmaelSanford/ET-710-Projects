@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give me an A+</title>
+    <link rel="icon" href="apple-logo-svgrepo-com.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --primary-color: #a8c0ff;
+            --error-color: #ff6b6b;
+            --text-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Background Orbs for Glassmorphism effect */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #7209b7; top: -50px; left: -50px; }
+        .orb-2 { width: 400px; height: 400px; background: #4361ee; bottom: -100px; right: -100px; animation-delay: -5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--glass-shadow);
+            opacity: 0;
+            transform: translateY(30px) rotateX(5deg);
+            animation: slideIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        h1 {
+            font-weight: 200;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #a8c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Staggered animation for form groups */
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.3s; }
+        .form-group:nth-child(3) { animation-delay: 0.4s; }
+        .form-group:nth-child(4) { animation-delay: 0.5s; }
+        .form-group:nth-child(5) { animation-delay: 0.6s; }
+        .form-group:nth-child(6) { animation-delay: 0.7s; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(168, 192, 255, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Custom Radio & Checkbox styling */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding: 5px 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: var(--primary-color);
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 0.8s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(168, 192, 255, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Error Handling */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .input-error {
+            border-color: var(--error-color) !important;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Summary Section */
+        #summary {
+            display: none;
+            margin-top: 0; /* Replaces form */
+            text-align: center;
+        }
+        
+        .summary-item {
+            text-align: left;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .summary-item strong {
+            color: var(--primary-color);
+            font-weight: 400;
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: #4cc9f0;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <div class="glass-card" id="cardContent">
+            <h1>Get in Touch</h1>
+            
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Jane Doe">
+                    <div class="error-message" id="error-name">Please enter your name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="jane@example.com">
+                    <div class="error-message" id="error-email">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <select id="topic" name="topic">
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Support">Support</option>
+                        <option value="Feedback">Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Contact Method</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="contactMethod" value="Email" checked> Email
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="contactMethod" value="Phone"> Phone
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="radio-label">
+                        <input type="checkbox" id="subscribe" name="subscribe">
+                        Subscribe to our newsletter
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Message</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="How can we help you?"></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div id="summary">
+                <div class="success-icon">✓</div>
+                <h2>Message Sent!</h2>
+                <p style="margin-bottom: 30px; opacity: 0.7;">We'll get back to you shortly.</p>
+                
+                <div class="summary-item">
+                    <strong>Name</strong>
+                    <span id="outName"></span>
+                </div>
+                <div class="summary-item">
+                    <strong>Email</strong>
+                    <span id="outEmail"></span>
+                </div>
+                <div class="summary-item">
+                    <strong>Topic</strong>
+                    <span id="outTopic"></span>
+                </div>
+                <div class="summary-item">
+                    <strong>Contact Method</strong>
+                    <span id="outMethod"></span>
+                </div>
+                <div class="summary-item">
+                    <strong>Subscribed</strong>
+                    <span id="outSubscribe"></span>
+                </div>
+                <div class="summary-item">
+                    <strong>Message</strong>
+                    <span id="outComments"></span>
+                </div>
+                
+                <button onclick="location.reload()" style="background: rgba(255,255,255,0.1); margin-top: 20px;">Send Another</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let isValid = true;
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('input-error'));
+
+            // Validate Name
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value.trim()) {
+                document.getElementById('error-name').style.display = 'block';
+                nameInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            // Validate Email
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                document.getElementById('error-email').style.display = 'block';
+                emailInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Collect values
+                const name = nameInput.value;
+                const email = emailInput.value;
+                const topic = document.getElementById('topic').value;
+                const comments = document.getElementById('comments').value || "No message provided";
+                const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+                const subscribe = document.getElementById('subscribe').checked ? "Yes" : "No";
+
+                // Populate Summary
+                document.getElementById('outName').textContent = name;
+                document.getElementById('outEmail').textContent = email;
+                document.getElementById('outTopic').textContent = topic;
+                document.getElementById('outMethod').textContent = contactMethod;
+                document.getElementById('outSubscribe').textContent = subscribe;
+                document.getElementById('outComments').textContent = comments;
+
+                // Transition
+                /* 
+                * TODO: Add smooth transition animation from form to summary
+                * Currently, it just switches instantly.
+                */
+                const form = document.getElementById('contactForm');
+                const summary = document.getElementById('summary');
+                const title = document.querySelector('h1');
+
+                form.style.opacity = '0';
+                title.style.opacity = '0';
+                
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    title.style.display = 'none';
+                    summary.style.display = 'block';
+                    
+                    // Trigger reflow for animation
+                    summary.style.opacity = '0';
+                    summary.style.transform = 'translateY(20px)';
+                    
+                    requestAnimationFrame(() => {
+                        summary.style.transition = 'all 0.5s ease';
+                        summary.style.opacity = '1';
+                        summary.style.transform = 'translateY(0)';
+                    });
+                }, 300);
+            }
+        });
+
+        // Real-time validation removal
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.classList.contains('input-error')) {
+                    this.classList.remove('input-error');
+                    const errorMsg = this.parentElement.querySelector('.error-message');
+                    if (errorMsg) errorMsg.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
