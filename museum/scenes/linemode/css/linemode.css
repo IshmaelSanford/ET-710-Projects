@@ -1,0 +1,202 @@
+@font-face {
+	font-family: 'cern';
+	src:url('../fonts/cern-terminal.eot');
+	src:url('../fonts/cern-terminal.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/cern-terminal.woff') format('woff'),
+		url('../fonts/cern-terminal.ttf') format('truetype'),
+		url('../fonts/cern-terminal.svg#icomoon') format('svg');
+}
+
+:root {
+    --term-green: hsl(150, 100%, 50%);
+    --term-bg: black;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: var(--term-bg);
+	color: var(--term-green);
+	font-family: 'cern', monospace;
+	height: 100%;
+	overflow: hidden; /* Main scroll handled by terminal-wrapper */
+    font-size: 18px; /* Base size, adjustable */
+    line-height: 1.5em;
+}
+
+/* Layout Container */
+.container {
+    width: 80ch;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Terminal Viewport */
+#terminal-wrapper {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 36em; /* 24 lines * 1.5em */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-right: 1ch; /* Space for scrollbar if visible */
+    scrollbar-width: none;
+}
+
+#terminal-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#terminal-output {
+    padding-bottom: 1em;
+}
+
+/* Status Line */
+#status-line {
+    border-top: 3px solid var(--term-green);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2em 0;
+    margin-top: auto; /* Push to bottom */
+    text-transform: uppercase;
+}
+
+/* Command Line */
+#command {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5em;
+    width: 100%;
+}
+
+.cmd-prompt {
+    white-space: pre;
+}
+
+#cmd-input {
+    background: transparent;
+    border: none;
+    color: var(--term-green);
+    font-family: inherit;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+    text-transform: uppercase;
+}
+
+/* Typography & Elements */
+h1 {
+	margin: 1.5em 0;
+	text-align: center;
+	text-transform: uppercase;
+    font-weight: normal;
+}
+
+h2, h3 {
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 1em 0;
+}
+
+p {
+	margin: 1em 0;
+}
+
+ul, ol {
+    margin: 1em 0;
+    padding-left: 4ch;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+    border-bottom: 1px solid transparent;
+}
+
+a:hover {
+    border-bottom-color: var(--term-green);
+}
+
+/* Blocker Canvas */
+#blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none; /* Let clicks pass through if needed, though it hides when done */
+}
+
+/* Glitch Effects */
+body.booting {
+    animation: flashWhite 150ms ease-out;
+}
+
+@keyframes flashWhite {
+    0% { background-color: white; }
+    100% { background-color: var(--term-bg); }
+}
+
+.jitter {
+    animation: vsyncJitter 0.1s steps(2) infinite;
+}
+
+@keyframes vsyncJitter {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-1px); }
+}
+
+/* Utility */
+.hide {
+    visibility: hidden;
+}
+
+/* Custom Cursor */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#cursor-block {
+    display: inline-block;
+    color: var(--term-green);
+    background-color: var(--term-green); /* Solid block */
+    width: 1ch;
+    height: 1.2em;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+}
+
+#input-display {
+    white-space: pre;
+}
+
+/* CRT Shut-off Animation */
+@keyframes turn-off {
+  0% {
+    transform: scale(1, 1.3) translate3d(0, 0, 0);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+    filter: brightness(10);
+  }
+  100% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: scale(0, 0.001) translate3d(0, 0, 0);
+    filter: brightness(50);
+    opacity: 0;
+  }
+}
+
+body.crt-off {
+    animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+}

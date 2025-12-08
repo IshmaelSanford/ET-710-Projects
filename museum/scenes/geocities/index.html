@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ishmael's Home Page</title>
+    <link rel="icon" href="../../assets/vista_personalization.ico">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='../../../shared/global-nav.css'>
+</head>
+<body>
+    <div class="window" style="width: 90%; height: 91vh; margin: 20px auto; max-width: 1200px;">
+        <div class="title-bar">
+            <div class="title-bar-text">Ishmael's Home Page - Microsoft Internet Explorer</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <div class="menu-bar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Go</span>
+                <span>Favorites</span>
+                <span>Help</span>
+            </div>
+            <div class="address-bar">
+                Address: <input type="text" value="http://www.geocities.com/ishmael/home.html" readonly>
+            </div>
+            <div class="content-area">
+                <!-- Loading Overlay -->
+                <div id="loading-overlay">
+                    <div class="loading-text">Downloading Internet...</div>
+                    <div class="loading-bar-container">
+                        <div class="loading-bar"></div>
+                    </div>
+                </div>
+
+                <marquee scrollamount="10" style="background: yellow; color: red; font-weight: bold;">WELCOME TO MY WEB PAGE!!! BEST VIEWED IN INTERNET EXPLORER 4.0</marquee>
+                
+                <img src="../../assets/globe.gif" alt="spinning globe" style="float: right; margin: 10px; width: 80px;">
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <h1 style="color: blue;">~*~ Ishmael's Cyber Zone ~*~</h1>
+                    <div class="counter">
+                        You are visitor #000153 since 1999
+                    </div>
+                    <br>
+                    <!-- Placeholder for Under Construction GIF -->
+                    <img src="../../assets/fire.gif" alt="fire">
+                    <a href="https://www.amazon.ca/Digital-Oppression-Games-Laser-Cat/dp/B013NSX6D8" target="_blank" rel="noopener noreferrer">
+                        <img src="../../assets/cat.png" alt="cat with freaking laser eyes" style="width: 50%; height: auto;">
+                    </a>
+                    <ul style="background: rgb(219, 219, 219); width: 40%; margin: 0 auto; border: 2px solid rgb(255, 255, 255);">
+                        <li>I found this sick laser cat photo and it's actually an app you can download on amazon.</li>
+                        <li>Crazy whats on the internet...</li>
+                    </ul>
+                </div>
+
+                <p align="center">This is the second stop in the time museum.</p>
+                <p align="center">It’s a satire/homage to early personal homepages.</p>
+                
+                <hr>
+                
+                <h2 align="center">My Interests</h2>
+                <ul style="background: pink; width: 20%; margin: 0 auto; border: 2px solid purple;">
+                    <li>Web Design</li>
+                    <li>Video Games</li>
+                    <li>Pizza</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="coin-btn" style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">FREE MONEY!!!</button>
+                </div>
+
+                <div style="text-align: center;">
+                    <br>
+                    <br><br>8
+                    <!-- Guestbook Section -->
+                    <div id="guestbook-section" style="margin: 20px auto; width: 80%; text-align: left;">
+                        <hr>
+                        <h3 align="center">~*~ Sign My Guestbook ~*~</h3>
+                        
+                        <div id="guestbook-error" style="color: red; display: none; text-align: center; font-weight: bold; margin-bottom: 10px;"></div>
+
+                        <form id="guestbook-form" style="background: silver; padding: 10px; border: 2px outset white; margin-bottom: 20px;">
+                            <div style="margin-bottom: 5px;">
+                                <label>Name:</label><br>
+                                <input type="text" id="gb-name" placeholder="Anonymous" style="width: 100%;">
+                            </div>
+                            <div style="margin-bottom: 5px;">
+                                <label>Message:</label><br>
+                                <textarea id="gb-message" rows="3" style="width: 100%; resize: vertical;" required></textarea>
+                            </div>
+                            <button type="submit">Sign Guestbook</button>
+                        </form>
+
+                        <div id="guestbook-entries" style="height: 200px; overflow-y: scroll; border: 2px inset white; background: #e0e0e0; padding: 5px;">
+                            <div style="text-align: center; padding: 10px;">Loading entries...</div>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/IshmaelSanford">My cool links</a> | <a href="mailto:ishmaelasanford@gmail.com">Email me!</a>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+                    <a href="../xp/index.html" class="click-me">CLICK ME!!!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="guestbook.js"></script>
+    <script>
+        (function() {
+            // Loading Animation
+            const overlay = document.getElementById('loading-overlay');
+            const contentArea = document.querySelector('.content-area');
+            const bar = document.querySelector('.loading-bar');
+            let progress = 0;
+            
+            // Disable scroll initially
+            if (contentArea) contentArea.style.overflow = 'hidden';
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        // Re-enable scroll
+                        if (contentArea) contentArea.style.overflow = 'auto';
+                    }, 200);
+                }
+                bar.style.width = progress + '%';
+            }, 100);
+
+            // Counter Logic
+            const counterElement = document.querySelector('.counter');
+            let count = localStorage.getItem('visitorCount');
+            
+            if (!count) {
+                count = 153;
+            } else {
+                count = parseInt(count) + 1;
+            }
+            
+            localStorage.setItem('visitorCount', count);
+            
+            // Format with leading zeros (e.g. 6 digits)
+            const formattedCount = count.toString().padStart(6, '0');
+            counterElement.textContent = `You are visitor #${formattedCount} since 1999`;
+
+            // Coin Animation Logic
+            const coinBtn = document.getElementById('coin-btn');
+            
+            coinBtn.addEventListener('click', (e) => {
+                // Create new coin element for every click
+                const coinImg = document.createElement('img');
+                coinImg.src = '../../assets/coin.gif';
+                coinImg.className = 'falling-coin';
+                
+                // Position coin at button center
+                const rect = coinBtn.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2 - 25; // 25 is half coin width
+                const centerY = rect.top + rect.height / 2 - 25;
+
+                coinImg.style.left = centerX + 'px';
+                coinImg.style.top = centerY + 'px';
+                
+                // Randomize trajectory
+                // Jump X: between -100px and 100px
+                const jumpX = (Math.random() * 200 - 100) + 'px';
+                // Fall X: between -200px and 200px (drift further)
+                const fallX = (Math.random() * 400 - 200) + 'px';
+                
+                coinImg.style.setProperty('--jump-x', jumpX);
+                coinImg.style.setProperty('--fall-x', fallX);
+
+                document.body.appendChild(coinImg);
+                
+                // Remove after animation
+                coinImg.addEventListener('animationend', () => {
+                    coinImg.remove();
+                });
+            });
+
+            // Disable XP link if running in iframe (XP scene)
+            if (window.parent !== window) {
+                const xpLink = document.querySelector('a[href="../xp/index.html"]');
+                if (xpLink) {
+                    xpLink.href = "javascript:void(0)";
+                    xpLink.style.opacity = "0.5";
+                    xpLink.style.cursor = "default";
+                    xpLink.textContent = "ALREADY THERE!!!";
+                    xpLink.classList.remove('click-me'); // Stop blinking
+                    xpLink.style.animation = "none";
+                }
+            }
+        })();
+    </script>
+    <script src='../../../shared/global-nav.js'></script>
+</body>
+</html>
+
