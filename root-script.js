@@ -157,6 +157,10 @@ function initSphere() {
     let autoScrollX = 0.5; // Slow auto scroll X
     let autoScrollY = 0.3; // Slow auto scroll Y (Diagonal)
     
+    // Auto Scroll Control
+    let isAutoScrolling = true;
+    let autoScrollTimer = null;
+    
     // DOM Elements for Info
     const titleEl = document.getElementById('heroTitle');
     const descEl = document.getElementById('heroDesc');
@@ -167,6 +171,9 @@ function initSphere() {
 
     container.addEventListener('mousedown', (e) => {
         isDragging = true;
+        isAutoScrolling = false; // Stop auto scroll immediately
+        if (autoScrollTimer) clearTimeout(autoScrollTimer);
+
         lastMouseX = e.clientX;
         lastMouseY = e.clientY;
         container.style.cursor = 'grabbing';
@@ -187,12 +194,18 @@ function initSphere() {
     window.addEventListener('mouseup', () => {
         isDragging = false;
         container.style.cursor = 'grab';
+
+        // Resume auto scroll after 2 seconds
+        if (autoScrollTimer) clearTimeout(autoScrollTimer);
+        autoScrollTimer = setTimeout(() => {
+            isAutoScrolling = true;
+        }, 2000);
     });
 
     // Animation Loop
     function animate() {
         // Auto Scroll
-        if (!isDragging) {
+        if (!isDragging && isAutoScrolling) {
             targetScrollX += autoScrollX;
             targetScrollY += autoScrollY;
         }

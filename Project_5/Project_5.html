@@ -1,75 +1,59 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bob's Equipment Rentals</title>
-    <style type="text/css">
-        /* Although the prompt asks for inline CSS, class selectors for table rows 
-           require an internal style block or repeated inline styles. 
-           I will use internal styles for the classes as requested by the prompt's mention of "class selectors". */
-        .row-a { background-color: white; color: black; }
-        .row-b { background-color: gray; color: white; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob's Equipment Rentals - PSX Edition</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 style="color: green; font-family: Arial, sans-serif;">Bob's Equipment Rentals</h1>
-    
-    <p style="color: blue; font-family: Arial, sans-serif;">
-        Welcome to Bob's Equipment Rentals. We provide top-quality tools for all your construction and gardening needs.
-    </p>
 
-    <h2 style="color: green; font-family: Arial, sans-serif;">Items Offered</h2>
-    <p style="color: blue; font-family: Arial, sans-serif;">
-        We offer a wide range of heavy machinery and power tools.
-    </p>
+    <div id="game-container">
+        <!-- Header / Wallet -->
+        <header>
+            <div class="logo">BOB'S SHOP</div>
+            <div class="wallet-display">
+                <img src="assets/coin.png" alt="Coin" class="wallet-icon">
+                <span id="wallet-amount">000</span>
+            </div>
+        </header>
 
-    <h2 style="color: green; font-family: Arial, sans-serif;">Operational Hours</h2>
-    <p style="color: blue; font-family: Arial, sans-serif;">
-        Mon-Fri: 7:00 AM - 6:00 PM<br />
-        Sat: 8:00 AM - 4:00 PM<br />
-        Sun: Closed
-    </p>
+        <!-- Main Area -->
+        <div id="main-area">
+            <!-- Shop List (Left) -->
+            <div id="shop-section">
+                <table id="shop-table">
+                    <thead>
+                        <tr>
+                            <th>ITEM</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS will populate this -->
+                    </tbody>
+                </table>
+            </div>
 
-    <h2 style="color: green; font-family: Arial, sans-serif;">Rental Charges</h2>
-    <table border="1" cellpadding="5" cellspacing="0" style="width: 80%; border-collapse: collapse;">
-        <tr style="background-color: #333; color: white;">
-            <th>Item</th>
-            <th>Daily Rate</th>
-            <th>Weekly Rate</th>
-        </tr>
-        <tr class="row-a">
-            <td>Power Washer</td>
-            <td>$45.00</td>
-            <td>$180.00</td>
-        </tr>
-        <tr class="row-b">
-            <td>Backhoe</td>
-            <td>$250.00</td>
-            <td>$1000.00</td>
-        </tr>
-        <tr class="row-a">
-            <td>Roto-tiller</td>
-            <td>$60.00</td>
-            <td>$240.00</td>
-        </tr>
-        <tr class="row-b">
-            <td>Jackhammer</td>
-            <td>$85.00</td>
-            <td>$340.00</td>
-        </tr>
-        <tr class="row-a">
-            <td>Cement Mixer</td>
-            <td>$55.00</td>
-            <td>$220.00</td>
-        </tr>
-    </table>
+            <!-- Bob (Right) -->
+            <div id="bob-section">
+                <div class="bob-container">
+                    <img src="assets/bob.png" id="bob-img" alt="Bob">
+                    <img src="assets/bob_talking_overlay.png" id="bob-overlay" alt="Bob Talking">
+                </div>
+            </div>
+        </div>
 
-    <h2 style="color: green; font-family: Arial, sans-serif;">Accepted Forms of Payment</h2>
-    <p style="color: blue; font-family: Arial, sans-serif;">
-        We accept Cash, Visa, MasterCard, and American Express.
-    </p>
+        <!-- Dialogue Box (Bottom) -->
+        <div id="dialogue-box">
+            <span id="dialogue-text"></span><span class="cursor-blink"></span>
+        </div>
+    </div>
 
-    <script src='../shared/global-nav.js'></script>
+    <script src="script.js"></script>
+    <script src="../shared/global-nav.js"></script>
 </body>
 </html>
 
