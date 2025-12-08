@@ -103,6 +103,7 @@ function initSphere() {
     const projects = [
         { title: "Project 11", desc: "Virtual Museum Experience", img: "img/proj_11.png", link: "Project_11/Project_11.html" },
         { title: "Web UI Museum", desc: "History of User Interfaces", img: "img/proj_13.png", link: "museum/index.html" },
+        { title: "404 Page", desc: "Error Handling", img: "img/404.png", link: "404.html" },
         { title: "Project 9", desc: "Parallax Scrolling", img: "img/proj_9.png", link: "Project_9/Project_9.html" },
         { title: "Project 8", desc: "Apple Style Minimalism", img: "img/proj_8.png", link: "Project_8/Project_8.html" },
         { title: "Project 1", desc: "HTML Basics", img: "img/proj_1.png", link: "Project_1/Project_1.html" },
