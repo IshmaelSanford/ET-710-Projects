@@ -1,0 +1,272 @@
+/* 
+    Root Styles (Based on Project 9)
+    Font: Space Grotesk
+    Colors: #efff83, #d9d9d9, #000000, #ffffff, #999999
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+:root {
+    --color-accent: #efff83;
+    --color-light-grey: #d9d9d9;
+    --color-dark-grey: #999999;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    
+    --font-main: 'Space Grotesk', sans-serif;
+    
+    --header-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 6rem); text-transform: uppercase; letter-spacing: -2px; }
+h2 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
+h3 { font-size: 1.5rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 1px; }
+p { font-size: 1.1rem; color: var(--color-light-grey); max-width: 60ch; }
+
+a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+a:hover { color: var(--color-accent); }
+
+/* --- Header --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000;
+    transition: transform 0.4s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header--hidden {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(239, 255, 131, 0.3);
+    color: var(--color-black);
+}
+
+/* --- General Section Styles --- */
+section {
+    min-height: 100vh;
+    padding: 100px 5%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #222;
+}
+
+/* --- Text Reveal Animation --- */
+.reveal-text {
+    opacity: 0;
+    transform: translateX(-50px);
+    letter-spacing: 10px;
+    transition: opacity 1s ease-out, transform 1s ease-out, letter-spacing 1.2s ease-out;
+    will-change: opacity, transform, letter-spacing;
+}
+
+.reveal-text.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+    letter-spacing: normal;
+}
+
+/* --- Project Grid (Based on .section-about) --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Alternating Layout */
+.about-grid.alt .about-image {
+    order: 2;
+}
+.about-grid.alt .about-text {
+    order: 1;
+}
+
+.about-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-image {
+    width: 100%;
+    background-color: var(--color-dark-grey);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 16/9;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-image:hover img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.about-image:hover .image-overlay {
+    opacity: 1;
+}
+
+.overlay-top {
+    transform: translateY(-20px);
+    transition: transform 0.4s ease;
+}
+
+.about-image:hover .overlay-top {
+    transform: translateY(0);
+}
+
+.image-name {
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.image-tldr {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.image-synopsis {
+    color: var(--color-white);
+    font-size: 1.1rem;
+    line-height: 1.4;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.about-image:hover .image-synopsis {
+    transform: translateY(0);
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .about-grid, .about-grid.alt {
+        grid-template-columns: 1fr;
+    }
+    .about-grid.alt .about-image {
+        order: 0;
+    }
+    .about-grid.alt .about-text {
+        order: 1;
+    }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+}

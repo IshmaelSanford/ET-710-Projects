@@ -1,12 +1,23 @@
 (function() {
-    // 1. Inject CSS
+    // 1. Determine Root Path dynamically
+    const script = document.currentScript;
+    // Fallback if currentScript is not supported (older browsers) or if loaded asynchronously in a way that loses context
+    // But for this simple injection, it should work.
+    const src = script ? script.getAttribute('src') : '../shared/global-nav.js';
+    const rootPath = src.replace('shared/global-nav.js', '');
+
+    // 2. Inject CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '../shared/global-nav.css'; 
+    link.href = rootPath + 'shared/global-nav.css'; 
     document.head.appendChild(link);
 
-    // 2. Define Pages
+    // 3. Define Pages (Ordered to match index.html)
     const pages = [
+        'Project_11/Project_11.html',
+        'museum/scenes/linemode/index.html',
+        'Project_9/Project_9.html',
+        'Project_8/Project_8.html',
         'Project_1/Project_1.html',
         'Project_2/Project_2.html',
         'Project_3/Project_3_1.html',
@@ -16,39 +27,38 @@
         'Project_6/Project_6.html',
         'Project_7/Project_7_1.html',
         'Project_7/Project_7_2.html',
-        'Project_8/Project_8.html',
-        'Project_9/Project_9.html',
         'Project_10/Project_10.html',
-        'Project_11/Project_11.html',
         'Project_12/Project_12.html'
     ];
 
-    // 3. Find Current Page
+    // 4. Find Current Page
     const path = window.location.pathname;
+    // Normalize path separators and decode URI components just in case
+    const normalizedPath = decodeURIComponent(path).replace(/\\/g, '/');
     
     let currentIndex = -1;
     for (let i = 0; i < pages.length; i++) {
-        // Check if path ends with the page string (handles different OS path separators if needed, though browser usually uses /)
-        if (path.replace(/\\/g, '/').endsWith(pages[i])) {
+        // Check if the end of the path matches the page entry
+        if (normalizedPath.endsWith(pages[i])) {
             currentIndex = i;
             break;
         }
     }
 
-    // 4. Determine Links
-    const homeLink = '../index.html';
+    // 5. Determine Links
+    const homeLink = rootPath + 'index.html';
     let prevLink = null;
     let nextLink = null;
     
     if (currentIndex > 0) {
-        prevLink = '../' + pages[currentIndex - 1];
+        prevLink = rootPath + pages[currentIndex - 1];
     }
     
     if (currentIndex < pages.length - 1 && currentIndex !== -1) {
-        nextLink = '../' + pages[currentIndex + 1];
+        nextLink = rootPath + pages[currentIndex + 1];
     }
 
-    // 5. Create HTML
+    // 6. Create HTML
     const nav = document.createElement('div');
     nav.className = 'global-nav-container';
     nav.innerHTML = `
