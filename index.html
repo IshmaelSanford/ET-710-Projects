@@ -20,12 +20,17 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero__content">
-            <h1>Digital<br>Showcase</h1>
-            <p>A collection of web development projects exploring interaction, design, and code.</p>
-            <a href="#projects" class="btn">View Projects</a>
+    <section id="hero" class="hero hero-3d-container">
+        <div class="hero-3d-scene" id="scene">
+            <!-- JS will populate this -->
         </div>
+        <div class="hero-info-panel">
+            <h2 class="hero-info-title" id="heroTitle">Loading...</h2>
+            <p class="hero-info-desc" id="heroDesc">...</p>
+            <a href="#projects" class="btn" id="heroBtn">View Project</a>
+        </div>
+        <div class="hero-vignette"></div>
+        <div class="hero-drag-hint">Drag to explore</div>
     </section>
 
     <div id="projects">

@@ -26,6 +26,7 @@
 
 html {
     font-size: 16px;
+    scroll-snap-type: y mandatory;
 }
 
 body {
@@ -85,19 +86,138 @@ a:hover { color: var(--color-accent); }
     gap: 2rem;
 }
 
-/* --- Hero Section --- */
-.hero {
+/* --- Hero Section (3D Sphere) --- */
+.hero-3d-container {
     position: relative;
     height: 100vh;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Light Theme */
+    color: #1a1a1a;
+    perspective: 1000px;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.hero-3d-container:active {
+    cursor: grabbing;
+}
+
+.hero-3d-scene {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    /* transform will be controlled by JS */
+}
+
+.project-card-3d {
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    backface-visibility: hidden; /* Hide back to reduce clutter or keep visible for effect */
+    /* transform set by JS */
+    transition: opacity 0.3s ease, filter 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    text-align: center;
 }
 
+.project-card-3d img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Prevent image dragging */
+}
+
+.project-card-3d.is-dimmed {
+    opacity: 0.6;
+    filter: grayscale(0.5) blur(1px);
+}
+
+.project-card-3d.is-active {
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 0 20px rgba(239, 255, 131, 0.8); /* Accent glow */
+    border: 2px solid var(--color-accent);
+}
+
+.hero-info-panel {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    text-align: left;
+    z-index: 200; /* Higher than 3D items (max ~150) */
+    pointer-events: none; /* Let clicks pass through to sphere if needed, but buttons need events */
+    width: 40%;
+    max-width: 500px;
+    padding: 2rem;
+    /* Removed background and border for transparent look */
+}
+
+.hero-info-panel * {
+    pointer-events: auto;
+}
+
+.hero-info-title {
+    font-size: 3.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.hero-info-desc {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hero-info-btn {
+    background-color: #1a1a1a;
+    color: var(--color-accent);
+}
+
+.hero-info-btn:hover {
+    background-color: var(--color-accent);
+    color: #1a1a1a;
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 50%, #f0f0f0 100%);
+    pointer-events: none;
+    z-index: 5;
+    /* Add a mask to fade out behind the text panel on the left */
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 40%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 40%);
+}
+
+.hero-drag-hint {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #999;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Hide original hero content styles if they conflict */
 .hero__content {
-    position: relative;
     z-index: 1;
     padding: 2rem;
 }
@@ -129,6 +249,7 @@ section {
     flex-direction: column;
     justify-content: center;
     border-bottom: 1px solid #222;
+    scroll-snap-align: start;
 }
 
 /* --- Text Reveal Animation --- */
@@ -181,6 +302,13 @@ section {
     overflow: hidden;
     cursor: pointer;
     aspect-ratio: 16/9;
+}
+
+.about-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
 }
 
 .about-image img {
