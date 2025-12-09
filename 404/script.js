@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let y = 0;
         let vx = 0;
         let vy = 0;
-        let rotation = 5; // Initial CSS rotation
+        let rotation = 0; // Initial CSS rotation
         let angularVelocity = 0;
         
         const gravity = 0.5;
