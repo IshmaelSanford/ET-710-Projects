@@ -159,6 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!this.hasClickedOnce) {
                 this.hasClickedOnce = true;
                 
+                if (!this.enabled) return;
+
                 // Start Siren
                 const sirenOverlay = document.querySelector('.siren-overlay');
                 if (sirenOverlay) sirenOverlay.classList.add('active');
