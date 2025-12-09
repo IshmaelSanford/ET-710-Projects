@@ -336,6 +336,11 @@ body.ui-locked {
     pointer-events: none;
 }
 
+body.ui-locked .audio-toggle,
+body.ui-locked .global-nav-container {
+    pointer-events: auto;
+}
+
 /* --- Navigation Buttons --- */
 .nav-btn {
     position: fixed;
