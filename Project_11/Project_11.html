@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 11: Virtual Museum</title>
+    <link rel="icon" type="image/png" href="images/project_11_fav.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">INITIALIZING MUSEUM PROTOCOL...</div>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
+        <div class="loading-subtext">For the best experience, please use headphones.</div>
+    </div>
+
+    <!-- Siren Overlay -->
+    <div class="siren-overlay"></div>
+
+    <!-- Audio Consent Modal -->
+    <div class="audio-consent-modal hidden">
+        <div class="consent-content">
+            <p>This exhibition includes narration and commentary.<br>Turn on audio?</p>
+            <div class="consent-buttons">
+                <button id="btn-audio-yes">YES</button>
+                <button id="btn-audio-no">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Toggle Button -->
+    <button class="audio-toggle" title="Toggle Audio">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+    </button>
+
+    <!-- Navigation Buttons -->
+    <button class="nav-btn prev">&lt;</button>
+    <button class="nav-btn next">&gt;</button>
+
+    <!-- Main Scene Container -->
+    <div class="scene">
+        <!-- Wall 1 (Active) -->
+        <div class="wall active">
+            <div class="background"></div>
+            <div class="painting-container">
+                <img src="images/terror_frame.png" alt="Terror in the City" class="painting-frame">
+                <div class="scan-overlay"><div class="scan-bar"></div></div>
+            </div>
+        </div>
+        
+        <!-- Wall 2 (Incoming/Buffer) -->
+        <div class="wall next">
+            <div class="background"></div>
+            <div class="painting-container">
+                <img src="images/terror_frame.png" alt="Terror in the City" class="painting-frame">
+                <div class="scan-overlay"><div class="scan-bar"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Effect Canvas -->
+    <canvas id="networkCanvas"></canvas>
+
+    <!-- Cursor Debug Text -->
+    <div id="cursor-debug"></div>
+
+    <!-- Terminal Info Panel -->
+    <div class="terminal-panel">
+        <div class="panel-header">
+            <div class="panel-title">Object Analysis</div>
+            <button class="btn-close">X</button>
+        </div>
+        
+        <div class="panel-content">
+            <div class="info-item">
+                <span class="label">Title</span>
+                <span class="value typing-cursor" id="info-title"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Description</span>
+                <span class="value" id="info-desc"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Resolution</span>
+                <span class="value" id="info-res"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Format</span>
+                <span class="value" id="info-type"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Origin</span>
+                <span class="value" id="info-origin"></span>
+            </div>
+            <div class="info-item">
+                <span class="label">Threat Level</span>
+                <span class="value" id="info-threat"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+

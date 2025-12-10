@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob's Equipment Rentals - PSX Edition</title>
+    <link rel="icon" type="image/svg+xml" href="../img/ico.svg" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Header / Wallet -->
+        <header>
+            <div class="logo">BOB'S SHOP</div>
+            <div class="wallet-display">
+                <img src="assets/coin.png" alt="Coin" class="wallet-icon">
+                <span id="wallet-amount">000</span>
+            </div>
+        </header>
+
+        <!-- Main Area -->
+        <div id="main-area">
+            <!-- Shop List (Left) -->
+            <div id="shop-section">
+                <table id="shop-table">
+                    <thead>
+                        <tr>
+                            <th>ITEM</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS will populate this -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bob (Right) -->
+            <div id="bob-section">
+                <div class="bob-container">
+                    <img src="assets/bob.png" id="bob-img" alt="Bob">
+                    <img src="assets/bob_talking_overlay.png" id="bob-overlay" alt="Bob Talking">
+                </div>
+            </div>
+        </div>
+
+        <!-- Dialogue Box (Bottom) -->
+        <div id="dialogue-box">
+            <span id="dialogue-text"></span><span class="cursor-blink"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="../shared/global-nav.js"></script>
+</body>
+</html>
+
+

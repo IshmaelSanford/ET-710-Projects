@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web UI Time Museum - Line Mode</title>
+    <link rel="icon" href="../../assets/vista_personalization.ico">
+    <link rel="stylesheet" href="css/linemode.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel='stylesheet' href='../../../shared/global-nav.css'>
+</head>
+<body>
+    <div class="container">
+        <div id="terminal-wrapper">
+            <div id="terminal-output">
+                <h1>Web UI Time Museum</h1>
+                <p>Welcome to the Web UI Time Museum.</p>
+                <p>This is a journey through the history of web interfaces, starting from the very beginning.</p>
+                <p>You are currently in the Line Mode Browser era (circa 1990).</p>
+                <p>To navigate, type the reference number in brackets or click the link.</p>
+                <ul>
+                    <li><a href="project.html" data-ref="1">About this project[1]</a></li>
+                    <li><a href="commands.html" data-ref="2">How this console works[2]</a></li>
+                    <li><a href="ux.html" data-ref="3">Why old UIs matter[3]</a></li>
+                    <li><a href="../geocities/index.html" data-ref="4">Continue to the next era[4]</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="status-line">
+            <span class="status-left">S1 ECHO</span>
+            <span class="status-right">NUM (1,025,036)</span>
+        </div>
+
+        <form id="command">
+            <span class="cmd-prompt">&lt;ref.number&gt;, Back, Quit, or Help: </span>
+            <input type="text" id="cmd-input" autocomplete="off" autofocus>
+        </form>
+    </div>
+    <script src="js/linemode.js" defer></script>
+    <script src='../../../shared/global-nav.js'></script>
+</body>
+</html>
+

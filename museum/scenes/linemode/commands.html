@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web UI Time Museum - Commands</title>
+    <link rel="icon" href="../../assets/vista_personalization.ico">
+    <link rel="stylesheet" href="css/linemode.css">
+    <link rel='stylesheet' href='../../../shared/global-nav.css'>
+</head>
+<body>
+    <div class="container">
+        <div id="terminal-wrapper">
+            <div id="terminal-output">
+                <h1>Command Help</h1>
+                <p>This interface simulates the CERN Line Mode Browser.</p>
+                <p>Commands available:</p>
+                <dl>
+                    <dt>&lt;number&gt;</dt>
+                    <dd>Type a number to follow a reference link (e.g., "1").</dd>
+                    <dt>Back</dt>
+                    <dd>Go back to the previous page.</dd>
+                    <dt>Quit</dt>
+                    <dd>Exit the browser (not fully implemented).</dd>
+                    <dt>Help</dt>
+                    <dd>Show this help message.</dd>
+                </dl>
+                <p><a href="index.html" data-ref="1">Return to Home[1]</a></p>
+            </div>
+        </div>
+        
+        <div id="status-line">
+            <span class="status-left">S1 ECHO</span>
+            <span class="status-right">NUM (1,025,036)</span>
+        </div>
+
+        <form id="command">
+            <span class="cmd-prompt">&lt;ref.number&gt;, Back, Quit, or Help: </span>
+            <input type="text" id="cmd-input" autocomplete="off" autofocus>
+        </form>
+    </div>
+    <script src="js/linemode.js" defer></script>
+    <script src='../../../shared/global-nav.js'></script>
+</body>
+</html>
+

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 9 | Parallax Experience</title>
+    <link rel="icon" type="image/svg+xml" href="../img/ico.svg" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">PROJECT 9</div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="canvas3d"></canvas>
+        <div class="hero__content">
+            <h1>Digital<br>Experience</h1>
+            <p>Crafting immersive web journeys with smooth motion and depth.</p>
+            <a href="#about" class="btn">Explore</a>
+        </div>
+    </section>
+
+    <!-- Section 1: About (Fade In) -->
+    <section id="about" class="section-about">
+        <div class="about-grid">
+            <div class="about-image">
+                <!-- Placeholder for assets/landing-screenshot.png -->
+                <img src="assets/landing-screenshot.png" alt="Landing Screenshot" />
+                <div class="image-overlay">
+                    <div class="overlay-top">
+                        <div class="image-name">LANDING SCREENSHOT</div>
+                        <div class="image-tldr">PORTFOLIO WEBSITE</div>
+                    </div>
+                    <div class="image-synopsis">A unique portfolio website design to display my skills and reach a larger audience.</div>
+                </div>
+            </div>
+            <div class="about-text reveal-text">
+                <h3>Who We Are</h3>
+                <h2>We Redefine<br>Interaction.</h2>
+                <p>We believe the web should be more than static pages. It should be a living, breathing environment that reacts to your presence. Our approach combines technical precision with artistic fluidity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Services (Bento Grid) -->
+    <section id="services" class="section-services">
+        <div class="services-bg-container">
+            <div class="services-lines">
+                <div class="services-line group-a">USÅUGI USÅUGI USÅUGI USÅUGI</div>
+                <div class="services-line group-b">SERVICES SERVICES SERVICES SERVICES</div>
+                <div class="services-line group-a">æœåŠ¡ æœåŠ¡ æœåŠ¡ æœåŠ¡ æœåŠ¡ æœåŠ¡ æœåŠ¡ æœåŠ¡</div>
+                <div class="services-line group-b">ã‚µãƒ¼ãƒ“ã‚¹ ã‚µãƒ¼ãƒ“ã‚¹ ã‚µãƒ¼ãƒ“ã‚¹ ã‚µãƒ¼ãƒ“ã‚¹</div>
+                <div class="services-line group-a">SERVICES SERVICES SERVICES SERVICES</div>
+                <div class="services-line group-b">
+ì„œë¹„ìŠ¤ 
+ì„œë¹„ìŠ¤ 
+ì„œë¹„ìŠ¤ 
+ì„œë¹„ìŠ¤</div>
+                <div class="services-line group-a">Ð£Ð¡Ð›Ð£Ð“Ð˜ Ð£Ð¡Ð›Ð£Ð“Ð˜ Ð£Ð¡Ð›Ð£Ð“Ð˜ Ð£Ð¡Ð›Ð£Ð“Ð˜</div>
+                <div class="services-line group-b">SERVICES SERVICES SERVICES SERVICES</div>
+            </div>
+        </div>
+        <div class="bento-grid">
+            <div class="bento-card card-strategy">
+                <div class="card-content initial">
+                    <h3>Strategy</h3>
+                    <p>Defining the path forward.</p>
+                </div>
+                <div class="card-content hover">
+                    <h3>Strategy</h3>
+                    <p>We dive deep into data and user behavior to craft roadmaps that ensure sustainable growth and market impact.</p>
+                </div>
+            </div>
+            <div class="bento-card card-design">
+                <div class="card-content initial">
+                    <h3>Design</h3>
+                    <p>Visual storytelling.</p>
+                </div>
+                <div class="card-content hover">
+                    <h3>Design</h3>
+                    <p>Creating intuitive, pixel-perfect interfaces that capture attention and guide users effortlessly.</p>
+                </div>
+            </div>
+            <div class="bento-card card-dev">
+                <div class="card-content initial">
+                    <h3>Development</h3>
+                    <p>Clean, performant code.</p>
+                </div>
+                <div class="card-content hover">
+                    <h3>Development</h3>
+                    <p>Building robust, scalable applications using modern technologies for seamless performance.</p>
+                </div>
+            </div>
+            <div class="bento-card card-motion">
+                <div class="card-content initial">
+                    <h3>Motion</h3>
+                    <p>Adding time and physics.</p>
+                </div>
+                <div class="card-content hover">
+                    <h3>Motion</h3>
+                    <p>Enhancing interactivity with fluid animations that bring the digital experience to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Works (Layered Parallax) -->
+    <section id="works" class="section-works">
+        <!-- Background Layer -->
+        <div class="parallax-layer layer-bg">
+            SELECTED WORKS
+        </div>
+        
+        <!-- Midground Layer (Floating Cards) -->
+        <div class="parallax-layer layer-mid">
+            <div class="floating-card card-1"></div>
+            <div class="floating-card card-2"></div>
+        </div>
+        
+        <!-- Foreground Content -->
+        <div class="hero__content"> <!-- Reusing hero content style for centering -->
+            <h2>Our Portfolio</h2>
+            <p style="color: #000;">A collection of our finest digital creations.</p>
+            <a href="#" class="btn" style="background: #000; color: #fff;">View All</a>
+        </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section id="contact" class="section-contact">
+        <div class="contact-container">
+            <div class="contact-lines">
+                <div class="contact-line group-1">READY TO</div>
+                <div class="contact-line group-1">DISCUSS YOUR</div>
+                <div class="contact-line group-2">NEXT PROJECT?</div>
+            </div>
+            <a href="mailto:hello@project9.com" class="btn-accent">Work with us</a>
+        </div>
+    </section>
+
+    <!-- Contact Overlay -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-modal" id="contactModal">
+            <button class="btn-close" id="btnCloseModal">&times;</button>
+            <!-- View 1: Intro -->
+            <div class="modal-view view-intro" id="viewIntro">
+                <h2>Let's work together</h2>
+                <button class="btn-secondary" id="btnToForm">Send us a message</button>
+            </div>
+            
+            <!-- View 2: Form -->
+            <div class="modal-view view-form" id="viewForm" style="display: none;">
+                <h2>Project Details</h2>
+                <form onsubmit="event.preventDefault();">
+                    <input type="text" placeholder="Name" required>
+                    <input type="text" placeholder="Company">
+                    <select>
+                        <option value="" disabled selected>What are you interested in?</option>
+                        <option value="strategy">Strategy</option>
+                        <option value="design">Design</option>
+                        <option value="development">Development</option>
+                        <option value="motion">Motion</option>
+                    </select>
+                    <textarea placeholder="Tell us about your project..." rows="4"></textarea>
+                    <div class="form-actions">
+                        <button type="button" class="btn-text" id="btnBack">Back</button>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Project 9. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import { Application } from 'https://unpkg.com/@splinetool/runtime';
+
+        const canvas = document.getElementById('canvas3d');
+        const app = new Application(canvas);
+        app.load('https://prod.spline.design/37ImJdOHS4cl2imt/scene.splinecode');
+    </script>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+
+

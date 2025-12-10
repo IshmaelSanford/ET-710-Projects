@@ -1,0 +1,279 @@
+:root {
+    --color-green: #4caf50; /* A nice green */
+    --color-bg: #1a1a1a;
+    --font-main: "sausage", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at center, #1b3a1b 0%, #0a140a 100%); /* Darker green gradient */
+    color: #fff;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-style: normal;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Text Styling */
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.error-code {
+    font-size: 35rem;
+    line-height: 1;
+    color: var(--color-green);
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 0;
+}
+
+.error-msg {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.home-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 2px solid var(--color-green);
+    color: var(--color-green);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px; /* Pill shape */
+}
+
+.home-btn:hover {
+    background-color: var(--color-green);
+    color: #000;
+}
+
+/* Assets Styling */
+.asset {
+    position: absolute;
+    pointer-events: auto; /* Allow interaction */
+}
+
+/* Ceiling */
+.ceiling-assets {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300px;
+    pointer-events: none;
+}
+
+.ceiling-plant-1 {
+    top: -300px; 
+    left: 25%; 
+    width: auto; 
+    transform: rotate(10deg);
+}
+
+.ceiling-plant-2 {
+    top: -150px; /* Moved up */
+    right: -5%; /* Further side */
+    width: auto; 
+    transform: rotate(-5deg);
+}
+
+.lamp-container {
+    position: absolute;
+    top: -50px; /* Moved up */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    transform-origin: top center;
+    pointer-events: none; /* Container doesn't block, hitbox does */
+    z-index: 20;
+}
+
+.lamp-hitbox {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Width of the lamp fixture */
+    height: 150px; /* Height of the lamp fixture (excluding light trail) */
+    background: transparent; /* Invisible */
+    /* background: rgba(255, 0, 0, 0.3); Debugging */
+    pointer-events: none; /* Disable interaction to prevent blocking button */
+    z-index: 21;
+    transform-origin: top center; /* Rotate from top */
+}
+
+.ceiling-lamp {
+    width: auto;
+    transform-origin: top center;
+    animation: swing 3s ease-in-out infinite;
+    pointer-events: none; /* Ensure lamp image doesn't block clicks */
+}
+
+/* Room/Floor */
+.room-assets {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 400px;
+    pointer-events: none;
+}
+
+.shelf {
+    bottom: 50px;
+    left: -10%; /* Further side */
+    width: auto;
+}
+
+.plant-large {
+    bottom: 50px;
+    right: -30%; /* Further side */
+    width: auto;
+    z-index: 5;
+}
+
+.plant-medium {
+    bottom: 50px;
+    left: 5%; /* Further side */
+    width: auto;
+    z-index: 6;
+}
+
+.plant-stairs {
+    bottom: 50px;
+    right: -5%; /* Further side */
+    width: auto;
+    opacity: 0.8;
+}
+
+.bucket {
+    bottom: 50px;
+    left: -20%; 
+    width: auto;
+}
+
+/* Animation Keyframes */
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    50% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+}
+
+@keyframes sway {
+    0% { transform: rotate(2deg); }
+    50% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
+}
+
+@keyframes sway-reverse {
+    0% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
+}
+
+.ceiling-plant-1 {
+    top: -300px; 
+    left: 25%; 
+    width: auto; 
+    transform-origin: top center;
+    animation: sway 4s ease-in-out infinite;
+}
+
+.ceiling-plant-2 {
+    top: -150px; /* Moved up */
+    right: -5%; /* Further side */
+    width: auto; 
+    transform-origin: top center;
+    animation: sway-reverse 5s ease-in-out infinite;
+}
+
+.plant-large {
+    bottom: 50px;
+    right: -30%; /* Further side */
+    width: auto;
+    z-index: 5;
+    transform-origin: bottom center;
+    animation: sway 6s ease-in-out infinite;
+}
+
+.plant-medium {
+    bottom: 50px;
+    left: 5%; /* Further side */
+    width: auto;
+    z-index: 6;
+    transform-origin: bottom center;
+    animation: sway-reverse 5.5s ease-in-out infinite;
+}
+
+.plant-stairs {
+    bottom: 50px;
+    right: -5%; /* Further side */
+    width: auto;
+    opacity: 0.8;
+    transform-origin: bottom center;
+    /* animation: sway 7s ease-in-out infinite; Removed as requested */
+}
+
+.bucket {
+    bottom: 50px;
+    left: -20%; 
+    width: auto;
+    transform-origin: center; /* Rotate around center for physics */
+    pointer-events: auto; /* Ensure interaction */
+    will-change: transform; /* Optimize for physics */
+}
+
+/* Paint Effects */
+.paint-puddle {
+    position: absolute;
+    bottom: 45px; /* Adjusted for thinner profile */
+    height: 12px; /* Thinner */
+    width: 80px; /* Wider */
+    background-color: #00d2ff;
+    transform: scale(0);
+    transform-origin: center;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1; /* Behind bucket */
+    /* Wavy shape using border-radius */
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: puddle-wobble 4s ease-in-out infinite;
+    transition: opacity 2s ease-out; /* Fade out transition */
+}
+
+.paint-puddle.fade-out {
+    opacity: 0;
+}
+
+@keyframes puddle-wobble {
+    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    33% { border-radius: 50% 40% 30% 70% / 60% 40% 70% 40%; }
+    66% { border-radius: 40% 60% 60% 40% / 40% 60% 30% 70%; }
+}

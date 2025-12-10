@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>End of Timeline - Windows XP</title>
+    <link rel="icon" href="../../assets/vista_personalization.ico">
+    <link rel="stylesheet" href="https://unpkg.com/xp.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel='stylesheet' href='../../../shared/global-nav.css'>
+</head>
+<body>
+    <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-target="win-message">
+                <img src="../../assets/dreamweaver1.ico" alt="Readme">
+                <span>Read Me</span>
+            </div>
+            <div class="desktop-icon" data-target="win-paint">
+                <img src="../../assets/MSPaint.png" alt="Paint">
+                <span>Paint</span>
+            </div>
+            <div class="desktop-icon" data-target="win-terminal">
+                <img src="../../assets/powershell1.ico" alt="Terminal">
+                <span>Line Mode</span>
+            </div>
+            <div class="desktop-icon" data-target="win-ie" id="icon-ie">
+                <img src="../../assets/ie1.ico" alt="IE">
+                <span>Internet Explorer</span>
+            </div>
+            <div class="desktop-icon" data-target="win-explorer">
+                <img src="../../assets/explorer.ico" alt="Explorer">
+                <span>File Explorer</span>
+            </div>
+        </div>
+
+        <!-- Message Window -->
+        <div class="window xp-window" id="win-message" style="top: 50px; left: 50px; width: 400px;">
+            <div class="title-bar">
+                <div class="title-bar-text">Message</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h3>You’ve reached the end of the timeline</h3>
+                <p>We've journeyed from the text-only Line Mode Browser, through the chaotic creativity of Geocities, to the more structured GUI of Windows XP.</p>
+                <p>Modern UX builds on these eras, balancing structure and expression.</p>
+                <p>Feel free to look around. There are eastereggs hidden throught this museum ;)</p>
+                <p>Thank you for visiting the Web UI Time Museum.</p>
+                <div style="text-align: right; margin-top: 15px;">
+                    <button class="ok-btn" onclick="window.location.href='../../index.html'" style="float: left;">Restart Tour</button>
+                    <button class="ok-btn" onclick="document.getElementById('win-message').style.display='none'">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paint App Window -->
+        <div class="window xp-window" id="win-paint" style="top: 100px; left: 200px; width: 600px; height: 450px; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">untitled - Paint</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; display: flex; flex-direction: column;">
+                <div class="paint-container">
+                    <div class="paint-toolbar">
+                        <button id="tool-pencil">Pencil</button>
+                        <button id="tool-eraser">Eraser</button>
+                        <button id="tool-fill">Fill</button>
+                        <button id="tool-undo">Undo</button>
+                        <button id="tool-clear">Clear Image</button>
+                        <button id="tool-save">Save</button>
+                        <div class="separator" style="width: 1px; background: #ccc; margin: 0 5px;"></div>
+                        <label for="brush-size" style="font-size: 11px;">Size:</label>
+                        <input type="range" id="brush-size" min="1" max="50" value="2" style="width: 60px;">
+                        <div class="separator" style="width: 1px; background: #ccc; margin: 0 5px;"></div>
+                        <label for="color-picker" style="font-size: 11px;">Color:</label>
+                        <input type="color" id="color-picker" value="#000000" style="width: 30px; height: 20px; padding: 0; border: none;">
+                        
+                        <div style="display: flex; align-items: center; gap: 2px; margin-left: 5px;">
+                            <span style="font-size: 10px;">R:</span><input type="number" id="color-r" min="0" max="255" value="0" style="width: 35px;">
+                            <span style="font-size: 10px;">G:</span><input type="number" id="color-g" min="0" max="255" value="0" style="width: 35px;">
+                            <span style="font-size: 10px;">B:</span><input type="number" id="color-b" min="0" max="255" value="0" style="width: 35px;">
+                        </div>
+                    </div>
+                    <div class="paint-canvas-area">
+                        <canvas id="paint-canvas"></canvas>
+                    </div>
+                    <div class="paint-palette">
+                        <div class="color-swatch" style="background: #000000;"></div>
+                        <div class="color-swatch" style="background: #808080;"></div>
+                        <div class="color-swatch" style="background: #800000;"></div>
+                        <div class="color-swatch" style="background: #808000;"></div>
+                        <div class="color-swatch" style="background: #008000;"></div>
+                        <div class="color-swatch" style="background: #008080;"></div>
+                        <div class="color-swatch" style="background: #000080;"></div>
+                        <div class="color-swatch" style="background: #800080;"></div>
+                        <div class="color-swatch" style="background: #ffffff;"></div>
+                        <div class="color-swatch" style="background: #c0c0c0;"></div>
+                        <div class="color-swatch" style="background: #ff0000;"></div>
+                        <div class="color-swatch" style="background: #ffff00;"></div>
+                        <div class="color-swatch" style="background: #00ff00;"></div>
+                        <div class="color-swatch" style="background: #00ffff;"></div>
+                        <div class="color-swatch" style="background: #0000ff;"></div>
+                        <div class="color-swatch" style="background: #ff00ff;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Window -->
+        <div class="window xp-window" id="win-terminal" style="top: 80px; left: 150px; width: 1200px; height: 765px; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">Line Mode Browser</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; background: black;">
+                <iframe src="../../index.html" class="terminal-frame"></iframe>
+            </div>
+        </div>
+
+        <!-- Internet Explorer Window -->
+        <div class="window xp-window" id="win-ie" style="top: 60px; left: 100px; width: 1024px; height: 768px; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">Internet Explorer</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; background: white; display: flex; flex-direction: column;">
+                <!-- IE Toolbar -->
+                <div style="background: #ece9d8; border-bottom: 1px solid #d1d1d1; padding: 2px;">
+                    <div style="display: flex; gap: 5px; margin-bottom: 2px;">
+                        <button>Back</button>
+                        <button>Forward</button>
+                        <button>Stop</button>
+                        <button>Refresh</button>
+                        <button>Home</button>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <span>Address:</span>
+                        <input type="text" value="http://www.geocities.com/sunsetstrip/alley/1234" style="flex-grow: 1; font-family: Tahoma, sans-serif;">
+                        <button>Go</button>
+                    </div>
+                </div>
+                <iframe src="../geocities/index.html" style="flex-grow: 1; border: none; width: 100%; height: 100%;"></iframe>
+            </div>
+        </div>
+
+        <!-- File Explorer Window -->
+        <div class="window xp-window" id="win-explorer" style="top: 150px; left: 150px; width: 600px; height: 450px; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">My Documents</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body" style="background: #fff; padding: 0; display: flex; flex-direction: column;">
+                <!-- Menu Bar -->
+                <div style="background: #ece9d8; border-bottom: 1px solid #d1d1d1; padding: 2px 5px; font-size: 11px; font-family: Tahoma, sans-serif;">
+                    File &nbsp; Edit &nbsp; View &nbsp; Favorites &nbsp; Tools &nbsp; Help
+                </div>
+                <!-- Toolbar -->
+                <div style="background: #ece9d8; border-bottom: 1px solid #d1d1d1; padding: 5px; display: flex; align-items: center; gap: 5px;">
+                    <button style="padding: 2px 5px; font-family: Tahoma, sans-serif;">Back</button>
+                    <button style="padding: 2px 5px; font-family: Tahoma, sans-serif;">Search</button>
+                    <button style="padding: 2px 5px; font-family: Tahoma, sans-serif;">Folders</button>
+                    <div style="flex-grow: 1; background: white; border: 1px solid #7f9db9; padding: 2px; font-size: 11px; font-family: Tahoma, sans-serif;">C:\Documents and Settings\User\My Documents</div>
+                </div>
+                
+                <div style="display: flex; flex-grow: 1; overflow: hidden;">
+                    <!-- Sidebar -->
+                    <div style="width: 180px; background: linear-gradient(to bottom, #7ba2e7 0%, #6375d6 100%); padding: 10px; color: #215dc6; font-family: Tahoma, sans-serif;">
+                        <div style="background: white; border-radius: 3px 3px 0 0; padding: 5px; font-weight: bold; font-size: 11px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>File and Folder Tasks</span>
+                            <span style="color: #ccc;">^</span>
+                        </div>
+                        <div style="background: #d6dff7; padding: 5px 10px; margin-bottom: 10px; font-size: 11px;">
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>Make a new folder</div>
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>Publish this folder to the Web</div>
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>Share this folder</div>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 3px 3px 0 0; padding: 5px; font-weight: bold; font-size: 11px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Other Places</span>
+                            <span style="color: #ccc;">^</span>
+                        </div>
+                        <div style="background: #d6dff7; padding: 5px 10px; margin-bottom: 10px; font-size: 11px;">
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>Desktop</div>
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>My Computer</div>
+                            <div style="margin-bottom: 4px; cursor: pointer; color: #215dc6;"><span style="margin-right: 5px;">•</span>My Network Places</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div style="flex-grow: 1; background: white; padding: 10px; overflow: auto;">
+                        <div class="desktop-icons" style="flex-direction: row; align-content: flex-start; height: auto;">
+                            <div class="desktop-icon" data-target="win-notepad" style="color: black; text-shadow: none; margin: 10px;">
+                                <img src="../../assets/flash4.ico" alt="Text File">
+                                <span>commands.txt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notepad Window -->
+        <div class="window xp-window" id="win-notepad" style="top: 200px; left: 200px; width: 600px; height: 400px; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">commands.txt - Notepad</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">_</button>
+                    <button aria-label="Maximize">[]</button>
+                    <button aria-label="Close" class="close">X</button>
+                </div>
+            </div>
+            <div class="window-body" style="background: white; font-family: 'Lucida Console', monospace; padding: 5px; overflow: auto;">
+                <pre style="margin: 0;">
+CUSTOM COMMANDS FOR LINE MODE TERMINAL:
+---------------------------------------
+
+render --donut   : Render a spinning 3D donut
+
+matrix           : Enter the Matrix
+
+theme --light    : Switch to light theme
+theme --coffee   : Switch to coffee theme
+theme --default  : Reset theme
+
+echo [text]      : Echo back text
+pong             : Play a game of Pong
+version          : Show version info
+sysinfo          : Display system information
+credits          : Show credits
+guestbook        : View guestbook entries
+ls               : List files
+cmd              : List commands
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="taskbar">
+        <div class="start-button">
+            <img src="../../assets/vista_white.ico" alt="logo" href="../../index.html">
+            start
+        </div>
+        <div id="taskbar-items">
+            <!-- Items added via JS -->
+        </div>
+        <div class="tray">
+            12:00 PM
+        </div>
+    </div>
+    <div id="cursor-indicator" style="position: fixed; pointer-events: none; border: 1px solid #000; border-radius: 50%; transform: translate(-50%, -50%); display: none; z-index: 999999;"></div>
+    <script src='../../../shared/global-nav.js'></script>
+</body>
+</html>
+

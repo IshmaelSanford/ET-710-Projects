@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Image Formats Comparison</title>
+    <link rel="icon" type="image/svg+xml" href="../img/ico.svg" />
+    <style type="text/css">
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h1 { color: #ffffff; }
+        p { color: #cccccc; }
+
+        table { width: 100%; border-collapse: collapse; }
+        td { border: 1px solid #444; padding: 20px; text-align: center; vertical-align: top; width: 50%; }
+        
+        /* Thumbnail Image Styles - Only targets images inside table cells */
+        td img { 
+            max-width: 200px; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto 10px; 
+            transition: transform 0.3s ease; /* Smooth transition for hover */
+            cursor: pointer; /* Show pointer to indicate clickable */
+            border: 1px solid #333;
+        }
+        
+        /* Hover Effect for Thumbnails */
+        td img:hover {
+            transform: scale(1.2); /* Make image larger */
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            z-index: 10;
+            position: relative;
+        }
+
+        .label { font-weight: bold; color: #fff; margin-top: 10px; }
+        .desc { font-size: 0.9em; color: #bbb; }
+
+        /* Modal (Popup) Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image File Formats</h1>
+    <p>Click on any image to view it in full screen.</p>
+    
+    <table>
+        <tr>
+            <td>
+                <img src="images/sample_jpeg.jpeg" alt="Sample JPEG Image" onclick="openModal(this.src)" />
+                <div class="label">JPEG (Joint Photographic Experts Group)</div>
+                <div class="desc">Best for photographs and complex images with many colors. Uses lossy compression.</div>
+            </td>
+            <td>
+                <img src="images/sample_png.png" alt="Sample PNG Image" onclick="openModal(this.src)" />
+                <div class="label">PNG (Portable Network Graphics)</div>
+                <div class="desc">Supports transparency and lossless compression. Good for logos and graphics with sharp edges.</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/sample_gif.gif" alt="Sample GIF Image" onclick="openModal(this.src)" />
+                <div class="label">GIF (Graphics Interchange Format)</div>
+                <div class="desc">Limited to 256 colors. Supports simple animation and transparency. Good for simple icons.</div>
+            </td>
+            <td>
+                <img src="images/text_overlay.gif" alt="GIF with Text Overlay" onclick="openModal(this.src)" />
+                <div class="label">GIF with Text Overlay</div>
+                <div class="desc">Demonstrates text over an image. GIF is often used for banners and simple animations.</div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&#215;</span>
+        <img class="modal-content" id="modalImg" alt="Full Screen Image" />
+    </div>
+
+    <script type="text/javascript">
+        // Function to open the modal
+        function openModal(src) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImg");
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks anywhere outside of the image
+        window.onclick = function(event) {
+            var modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script src='../shared/global-nav.js'></script>
+</body>
+</html>
+
+
